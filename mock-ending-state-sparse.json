@@ -1,0 +1,110 @@
+{
+  "session_title": "Люди этого эфира",
+  "audio": {
+    "url": "assets/ending-track.mp3",
+    "volume": 0.62,
+    "mix_gain": 0.55
+  },
+  "final_message": "Спасибо вам\nза этот невероятный стрим!",
+  "show": {
+    "intro_seconds": 6,
+    "outro_seconds": 12,
+    "outro_early_seconds": 5,
+    "music_fade_out_seconds": 2,
+    "final_message_lead_seconds": 14,
+    "final_message_prep_seconds": 2.5,
+    "main_padding_seconds": 1,
+    "stats_change_transition_ms": 650,
+    "clip_crossfade_ms": 500,
+    "clip_video_volume": 1,
+    "duck_music_during_video_clips": true,
+    "music_duck_level": 0.12,
+    "auto_stop_stream": true,
+    "stop_stream_at": "after_final_message",
+    "stop_stream_lead_seconds": 0.5,
+    "stop_stream_delay_seconds": 10
+  },
+  "stats": {
+    "total_seen_label": "Свой след сегодня оставили",
+    "total_seen_users": 12
+  },
+  "top_chatters": [
+    { "name": "StreamFan_Max", "messages": 47 },
+    { "name": "Kira_Watcher", "messages": 29 },
+    { "name": "NightOwl88", "messages": 18 }
+  ],
+  "first_time_chatters": [
+    { "name": "NewcomerAlex" },
+    { "name": "quiet_entry" }
+  ],
+  "follows": [],
+  "top_streaks": [
+    { "name": "StreamFan_Max", "streak": 6 },
+    { "name": "LoyalViewer", "streak": 4 }
+  ],
+  "subscription_events": [],
+  "bits_leaders": [],
+  "raids": [],
+  "reward_redemptions": [
+    { "name": "HydrateNow", "detail": "Hydrate" },
+    { "name": "ClipPlease", "detail": "Выделенное сообщение" }
+  ],
+  "donors": [
+    {
+      "name": "GenerousSoul",
+      "amount": 500,
+      "formatted_amount": "500 ₽",
+      "contribution_label": "1 донат",
+      "message": "Спасибо за эфир"
+    }
+  ],
+  "credits": [
+    "StreamFan_Max",
+    "Kira_Watcher",
+    "NightOwl88",
+    "LoyalViewer",
+    "NewcomerAlex",
+    "GenerousSoul",
+    "QuietViewer",
+    "ReturnVisitor",
+    "RegularMike",
+    "SilentLurker",
+    "FriendlyFace",
+    "MorningViewer"
+  ],
+  "clips": [
+    {
+      "type": "video",
+      "url": "assets/clips/local-fallback-01.mp4",
+      "title": "Пример клипа 1",
+      "preferred_duration_sec": 12,
+      "duration_sec": 12,
+      "source": "local-fallback"
+    },
+    {
+      "type": "video",
+      "url": "assets/clips/local-fallback-02.mp4",
+      "title": "Пример клипа 2",
+      "preferred_duration_sec": 12,
+      "duration_sec": 12,
+      "source": "local-fallback"
+    },
+    {
+      "type": "video",
+      "url": "assets/clips/local-fallback-03.mp4",
+      "title": "Пример клипа 3",
+      "preferred_duration_sec": 12,
+      "duration_sec": 12,
+      "source": "local-fallback"
+    }
+  ],
+  "theme": {
+    "bg_color": "#0f0e0b",
+    "panel_color": "rgba(28,22,18,0.92)",
+    "accent_color": "#c6a876",
+    "text_color": "#f5efe6",
+    "muted_text_color": "rgba(245,239,230,0.62)",
+    "success_color": "#dcc9a4",
+    "danger_color": "#b8957a"
+  }
+}

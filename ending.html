@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stream Ending</title>
+  <link rel="stylesheet" href="ending.css?v=20260513-fit-text1" />
+  <style id="ending-critical-layout">
+    html, body {
+      width: 100% !important;
+      height: 100% !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+    }
+
+    #scene {
+      position: fixed !important;
+      inset: 0 !important;
+      width: auto !important;
+      height: auto !important;
+      display: grid !important;
+      grid-template-rows: minmax(0, 1fr) 140px !important;
+      gap: 18px !important;
+      padding: 28px 32px !important;
+      overflow: hidden !important;
+    }
+
+    .scene-main {
+      grid-row: 1 !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) 456px !important;
+      gap: 28px !important;
+      overflow: hidden !important;
+    }
+
+    #stats-panel {
+      width: 456px !important;
+      max-width: 456px !important;
+      min-width: 0 !important;
+    }
+
+    .stats-hero-number {
+      font-family: "Trebuchet MS", Verdana, sans-serif !important;
+      font-size: 108px !important;
+      font-weight: 800 !important;
+      line-height: 0.92 !important;
+      letter-spacing: 0 !important;
+      font-variant-numeric: tabular-nums !important;
+      white-space: nowrap !important;
+    }
+
+    #credits-overlay {
+      grid-row: 2 !important;
+      position: relative !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      z-index: 2 !important;
+      width: 100% !important;
+      height: 140px !important;
+      min-height: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      padding: 14px 24px 16px !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      overflow: hidden !important;
+      border-radius: 16px !important;
+      border: 1px solid rgba(232, 218, 198, 0.16) !important;
+      background: linear-gradient(180deg, rgba(24, 22, 18, 0.88), rgba(8, 9, 8, 0.94)) !important;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28) !important;
+    }
+
+    #credits-overlay.hidden {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+
+    #credits-overlay .credits-heading,
+    #credits-overlay .credits-label,
+    #credits-overlay .credits-count,
+    #credits-overlay .credits-mask {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    #credits-overlay .credits-mask {
+      flex: 1 !important;
+      height: auto !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+      padding: 2px 18px 0 !important;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%) !important;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%) !important;
+    }
+
+    #credits-overlay .credits-inner {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      height: 100% !important;
+      overflow: hidden !important;
+    }
+
+    #credits-overlay .credits-row {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      width: 100% !important;
+      min-height: 28px !important;
+      overflow: hidden !important;
+    }
+
+    #credits-overlay .credits-track {
+      display: flex !important;
+      align-items: center !important;
+      width: max-content !important;
+      min-width: 0 !important;
+      animation: endingCreditsTicker var(--credits-duration, 58s) linear infinite !important;
+      animation-delay: var(--credits-delay, 0s) !important;
+      will-change: transform !important;
+    }
+
+    #credits-overlay .credits-set {
+      display: flex !important;
+      align-items: center !important;
+      flex: 0 0 auto !important;
+      gap: 13px !important;
+      padding-right: 13px !important;
+    }
+
+    #credits-overlay .credits-name {
+      max-width: none !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      white-space: nowrap !important;
+      flex: 0 0 auto !important;
+      font-size: 18px !important;
+      line-height: 1.2 !important;
+      color: rgba(245, 239, 230, 0.9) !important;
+    }
+
+    @keyframes endingCreditsTicker {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+      to {
+        transform: translate3d(calc(-1 * var(--credits-shift, 50%)), 0, 0);
+      }
+    }
+  </style>
+</head>
+<body class="body-loading">
+
+  <!-- ── Loading (пока грузятся JSON и аудио) ─────────────────── -->
+  <div id="loading-overlay" class="loading-screen" aria-live="polite" aria-busy="true">
+    <div class="loading-aura loading-aura--left" aria-hidden="true"></div>
+    <div class="loading-aura loading-aura--right" aria-hidden="true"></div>
+    <div class="loading-grid" aria-hidden="true"></div>
+    <div class="loading-inner">
+      <p class="loading-kicker">ФИНАЛЬНАЯ СЦЕНА</p>
+      <h1 id="loading-title" class="loading-title">Собираем финальные моменты</h1>
+      <p id="loading-detail" class="loading-detail"></p>
+      <div class="loading-bar" aria-hidden="true">
+        <div class="loading-bar-track">
+          <div class="loading-bar-indet"></div>
+        </div>
+      </div>
+      <div class="loading-preview" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="loading-steps" id="loading-steps">
+        <li class="loading-step loading-step--active" data-step="data">
+          <span class="loading-step-icon" aria-hidden="true"></span>
+          <span class="loading-step-text">Собираем имена и события</span>
+        </li>
+        <li class="loading-step loading-step--pending" data-step="audio">
+          <span class="loading-step-icon" aria-hidden="true"></span>
+          <span class="loading-step-text">Готовим музыку и клипы</span>
+        </li>
+        <li class="loading-step loading-step--pending" data-step="ready">
+          <span class="loading-step-icon" aria-hidden="true"></span>
+          <span class="loading-step-text">Выстраиваем финальный кадр</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── Autoplay blocked overlay ─────────────────────────────── -->
+  <div id="start-overlay" class="full-overlay hidden">
+    <div class="overlay-card">
+      <div class="overlay-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="56" height="56">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
+      <h1 id="start-overlay-title" class="overlay-title">Финальная сцена готова</h1>
+      <p id="start-overlay-sub" class="overlay-sub">Нажмите, чтобы начать</p>
+      <button type="button" id="start-btn">Запустить финал</button>
+    </div>
+  </div>
+
+  <!-- ── Error overlay ─────────────────────────────────────────── -->
+  <div id="error-overlay" class="full-overlay hidden">
+    <div class="overlay-card overlay-card--error">
+      <div class="overlay-icon overlay-icon--error">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="56" height="56">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+        </svg>
+      </div>
+      <h1 class="overlay-title">Что-то пошло не так</h1>
+      <p id="error-message-text" class="overlay-sub">Не удалось загрузить данные сцены</p>
+    </div>
+  </div>
+
+  <!-- ── Main scene ─────────────────────────────────────────────── -->
+  <div id="scene">
+
+    <!-- Ambient background glows -->
+    <div class="bg-glow bg-glow--l" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow--r" aria-hidden="true"></div>
+    <div class="scene-grid" aria-hidden="true"></div>
+    <div class="scene-vignette" aria-hidden="true"></div>
+    <div class="scene-beam" aria-hidden="true"></div>
+
+    <div class="scene-main">
+
+      <!-- ── Left: Clips panel ──────────────────────────────────── -->
+      <div id="clips-panel" class="panel" aria-label="Лучшие моменты">
+        <div class="panel-accent-line" aria-hidden="true"></div>
+        <div class="panel-content">
+
+          <div class="panel-header">
+            <span class="panel-label">ЛУЧШИЕ МОМЕНТЫ</span>
+            <div class="panel-dots" aria-hidden="true">
+              <span class="dot dot--accent"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          <div class="clip-panel-meta">
+            <div class="clip-panel-pill">
+              <span class="clip-panel-pill-dot" aria-hidden="true"></span>
+              <span>Архив лучших фрагментов</span>
+            </div>
+            <span id="clip-counter-badge" class="clip-counter-badge">01 / 01</span>
+          </div>
+
+          <div class="clip-stage-shell">
+            <!-- Two crossfade slots -->
+            <div id="clip-stage" class="clip-stage">
+              <div class="clip-stage-shine" aria-hidden="true"></div>
+              <div class="clip-stage-frame" aria-hidden="true"></div>
+              <div class="clip-stage-hud" aria-hidden="true">
+                <span class="clip-stage-kicker">NOW PLAYING</span>
+              </div>
+              <div id="clip-slot-a" class="clip-slot">
+                <video id="clip-video-a" class="clip-media" playsinline preload="auto"></video>
+                <iframe id="clip-embed-a" class="clip-media clip-iframe" frameborder="0"
+                  allowfullscreen allow="autoplay; encrypted-media; picture-in-picture; fullscreen"></iframe>
+              </div>
+              <div id="clip-slot-b" class="clip-slot">
+                <video id="clip-video-b" class="clip-media" playsinline preload="auto"></video>
+                <iframe id="clip-embed-b" class="clip-media clip-iframe" frameborder="0"
+                  allowfullscreen allow="autoplay; encrypted-media; picture-in-picture; fullscreen"></iframe>
+              </div>
+              <!-- No-clips fallback -->
+              <div id="clip-empty" class="clip-empty hidden">
+                <div class="clip-empty-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="72" height="72">
+                    <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+                  </svg>
+                </div>
+                <p>Клипы недоступны</p>
+                <span>Лучшие моменты появятся в следующий раз</span>
+              </div>
+              <div class="clip-stage-copy">
+                <p class="clip-stage-caption">Лучшие фрагменты эфира</p>
+                <p id="clip-stage-title" class="clip-stage-title"></p>
+              </div>
+              <div class="clip-stage-progress" aria-hidden="true">
+                <div id="clip-stage-progress-bar" class="clip-stage-progress-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clip footer: title -->
+          <div id="clip-footer" class="clip-footer">
+            <span class="clip-live-dot" aria-hidden="true"></span>
+            <span id="clip-title-text" class="clip-title-text"></span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Right: Stats panel ─────────────────────────────────── -->
+      <div id="stats-panel" class="panel" aria-label="Статистика эфира">
+        <div class="panel-accent-line" aria-hidden="true"></div>
+        <div class="panel-content">
+
+          <div class="panel-header">
+            <span class="panel-label">ЛЮДИ ЭТОГО ЭФИРА</span>
+            <span id="session-title-text" class="session-title-badge"></span>
+          </div>
+          <div class="stats-topline">
+            <div class="stats-topline-copy">
+              <span class="stats-summary-kicker">Кто сделал эфир живым</span>
+              <span id="stats-current-label" class="stats-current-label">След, который люди оставили сегодня</span>
+            </div>
+            <span id="stats-current-index" class="stats-current-index">01</span>
+          </div>
+
+          <div id="stats-body" class="stats-body">
+
+            <!-- Section 1: Total viewers -->
+            <div id="section-visitors" class="stats-section" aria-live="polite">
+              <div class="stats-inner">
+                <p class="stats-eyebrow" id="visitors-label">Свой след сегодня оставили</p>
+                <div class="stats-hero-number" id="visitors-number">0</div>
+                <p class="stats-unit">участников</p>
+                <p id="visitors-secondary-note" class="stats-secondary-note hidden"></p>
+              </div>
+            </div>
+
+            <!-- Section 2: Top chatters -->
+            <div id="section-chatters" class="stats-section">
+              <div class="stats-inner">
+                <p class="stats-eyebrow">Кто сильнее всего двигал чат</p>
+                <div id="chatters-list" class="top-list" role="list"></div>
+                <p id="chatters-empty" class="no-data-msg hidden">Нет данных о чате</p>
+              </div>
+            </div>
+
+            <!-- Section 3: First-time chatters -->
+            <div id="section-first-chatters" class="stats-section">
+              <div class="stats-inner">
+                <p class="stats-eyebrow">Кто впервые заговорил в чате</p>
+                <div id="first-chatters-list" class="name-cloud" role="list"></div>
+              </div>
+            </div>
+
+            <!-- Section 4: Follows -->
+            <div id="section-follows" class="stats-section">
+              <div class="stats-inner">
+                <p class="stats-eyebrow">Кто решил остаться с каналом</p>
+                <div id="follows-list" class="name-cloud" role="list"></div>
+              </div>
+            </div>
+
+            <!-- Section 5: Top streaks -->
+            <div id="section-streaks" class="stats-section">
+              <div class="stats-inner">
+                <p class="stats-eyebrow">Кто возвращался на эфиры</p>
+                <div id="streaks-list" class="top-list" role="list"></div>
+                <p id="streaks-empty" class="no-data-msg hidden">Нет данных о сериях</p>
+              </div>
+            </div>
+
+            <!-- Section 6: Subscriptions -->
+            <div id="section-subscriptions" class="stats-section">
+              <div class="stats-inner">
+                <p class="stats-eyebrow">Кто поддержал подпиской</p>
+                <div id="subscriptions-list" class="event-list" role="list"></div>
+              </div>
+            </div>
+
+            <!-- Section 7: Bits -->
+            <div id="section-bits" class="stats-section">
+              <div class="stats-inner">
+                <p class="stats-eyebrow">Кто поддержал bits</p>
+                <div id="bits-list" class="top-list" role="list"></div>
+              </div>
+            </div>
+
+            <!-- Section 8: Raids -->
+            <div id="section-raids" class="stats-section">
+              <div class="stats-inner">
+                <p class="stats-eyebrow">Кто привёл людей рейдом</p>
+                <div id="raids-list" class="event-list" role="list"></div>
+              </div>
+            </div>
+
+            <!-- Section 9: Channel points -->
+            <div id="section-redemptions" class="stats-section">
+              <div class="stats-inner">
+                <p class="stats-eyebrow">Кто запускал активности канала</p>
+                <div id="redemptions-list" class="event-list" role="list"></div>
+              </div>
+            </div>
+
+            <!-- Section 10: Donors -->
+            <div id="section-donors" class="stats-section">
+              <div class="stats-inner">
+                <p class="stats-eyebrow">Кто поддержал эфир делом</p>
+                <div id="donors-chips" class="donors-grid" role="list"></div>
+                <p id="no-donors-msg" class="no-data-msg hidden">Сегодня без донатов, но место для следующего вклада уже есть</p>
+              </div>
+            </div>
+
+          </div>
+          <div id="stats-nav" class="stats-nav" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Credits crawl (separate bottom dock) ─────────────────── -->
+    <div id="credits-overlay" class="credits-overlay hidden" aria-hidden="true">
+      <div class="credits-heading">
+        <p id="credits-label" class="credits-label">ЭТОТ ЭФИР СОЗДАЛИ ВМЕСТЕ</p>
+        <span id="credits-count" class="credits-count"></span>
+      </div>
+      <div class="credits-mask">
+        <div id="credits-inner" class="credits-inner"></div>
+      </div>
+    </div>
+
+  </div><!-- /scene -->
+
+  <!-- ── Final message overlay ──────────────────────────────────── -->
+  <div id="final-overlay" class="final-overlay hidden" aria-live="assertive">
+    <div id="final-card" class="final-card">
+      <div class="final-kicker">СЛЕД ЭФИРА ОСТАЛСЯ В ЛЮДЯХ</div>
+      <div id="final-text" class="final-text"></div>
+    </div>
+  </div>
+
+  <!-- ── Debug panel ────────────────────────────────────────────── -->
+  <div id="debug-panel" class="debug-panel hidden" aria-hidden="true">
+    <div class="debug-row">
+      <span class="debug-key">Phase</span>
+      <span id="dbg-phase" class="debug-val">—</span>
+    </div>
+    <div class="debug-row">
+      <span class="debug-key">Time</span>
+      <span id="dbg-time" class="debug-val">—</span>
+      <span id="dbg-dur" class="debug-muted">/ —</span>
+    </div>
+    <div class="debug-track">
+      <div id="dbg-bar" class="debug-bar"></div>
+      <div id="dbg-markers" class="debug-markers"></div>
+    </div>
+    <div id="dbg-log" class="debug-log"></div>
+  </div>
+
+  <audio id="bg-audio" preload="auto"></audio>
+  <script src="ending.js?v=20260513-fit-text1"></script>
+</body>
+</html>

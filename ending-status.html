@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ending Status</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111316;
+      --panel: #1b2026;
+      --panel-2: #232a32;
+      --text: #f2f5f7;
+      --muted: #aeb8c3;
+      --border: #35404a;
+      --ok: #60d394;
+      --warn: #ffd166;
+      --bad: #ff6b6b;
+      --info: #7cc7ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+
+    main {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.1;
+    }
+
+    .stamp {
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 18px;
+      min-height: 138px;
+    }
+
+    .card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .row:first-of-type {
+      border-top: 0;
+    }
+
+    .label {
+      color: var(--muted);
+    }
+
+    .value {
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 30px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--panel-2);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--info);
+      flex: 0 0 auto;
+    }
+
+    .ok .dot { background: var(--ok); }
+    .warn .dot { background: var(--warn); }
+    .bad .dot { background: var(--bad); }
+
+    a {
+      color: var(--info);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    pre {
+      max-height: 260px;
+      overflow: auto;
+      margin: 0;
+      padding: 12px;
+      border-radius: 8px;
+      background: #0b0d10;
+      color: #dfe8ef;
+      font-size: 13px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+
+    @media (max-width: 720px) {
+      main {
+        width: min(100% - 20px, 980px);
+        padding: 20px 0;
+      }
+
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Ending Status</h1>
+      <div class="stamp" id="updated">Проверка...</div>
+    </header>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Backend</h2>
+        <div class="row">
+          <span class="label">Состояние</span>
+          <span class="value pill" id="backend-state"><span class="dot"></span>Проверка</span>
+        </div>
+        <div class="row">
+          <span class="label">Сцена</span>
+          <span class="value"><a href="/ending.html">ending.html</a></span>
+        </div>
+        <div class="row">
+          <span class="label">Demo</span>
+          <span class="value"><a href="/ending.html?demo=1">ending.html?demo=1</a></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Twitch</h2>
+        <div class="row">
+          <span class="label">Collector</span>
+          <span class="value pill" id="collector-state"><span class="dot"></span>Проверка</span>
+        </div>
+        <div class="row">
+          <span class="label">EventSub</span>
+          <span class="value pill" id="eventsub-state"><span class="dot"></span>Проверка</span>
+        </div>
+        <div class="row">
+          <span class="label">Активный эфир</span>
+          <span class="value" id="active-session">...</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Auth</h2>
+        <div class="row">
+          <span class="label">Twitch app</span>
+          <span class="value pill" id="twitch-app"><span class="dot"></span>Проверка</span>
+        </div>
+        <div class="row">
+          <span class="label">Twitch user</span>
+          <span class="value pill" id="twitch-user"><span class="dot"></span>Проверка</span>
+        </div>
+        <div class="row">
+          <span class="label">DonationAlerts</span>
+          <span class="value pill" id="da-user"><span class="dot"></span>Проверка</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Links</h2>
+        <div class="row">
+          <span class="label">Health</span>
+          <span class="value"><a href="/api/health">/api/health</a></span>
+        </div>
+        <div class="row">
+          <span class="label">Twitch status</span>
+          <span class="value"><a href="/api/twitch/status">/api/twitch/status</a></span>
+        </div>
+        <div class="row">
+          <span class="label">DonationAlerts status</span>
+          <span class="value"><a href="/api/donationalerts/status">/api/donationalerts/status</a></span>
+        </div>
+      </article>
+
+      <article class="card wide">
+        <h2>Raw status</h2>
+        <pre id="raw">Loading...</pre>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const byId = (id) => document.getElementById(id);
+
+    function setPill(id, state, text) {
+      const el = byId(id);
+      el.classList.remove("ok", "warn", "bad");
+      el.classList.add(state);
+      el.lastChild.nodeValue = text;
+    }
+
+    async function getJson(url) {
+      const response = await fetch(url, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error(`${url}: HTTP ${response.status}`);
+      }
+      return response.json();
+    }
+
+    function yesNo(value) {
+      return value ? ["ok", "OK"] : ["warn", "Нет"];
+    }
+
+    async function refresh() {
+      const raw = {};
+      try {
+        const [health, twitch, donationAlerts] = await Promise.all([
+          getJson("/api/health"),
+          getJson("/api/twitch/status"),
+          getJson("/api/donationalerts/status"),
+        ]);
+
+        raw.health = health;
+        raw.twitch = twitch;
+        raw.donationAlerts = donationAlerts;
+
+        setPill("backend-state", health.ok ? "ok" : "bad", health.ok ? "Работает" : "Ошибка");
+
+        const collector = twitch.collector || {};
+        setPill("collector-state", collector.running ? "ok" : "bad", collector.running ? "Работает" : "Не работает");
+        setPill(
+          "eventsub-state",
+          collector.eventsub_connected ? "ok" : "warn",
+          collector.eventsub_connected ? "Подключен" : "Нет соединения"
+        );
+
+        const active = collector.active_session;
+        byId("active-session").textContent = active ? `${active.stream_id} с ${active.started_at}` : "Сейчас нет";
+
+        const twitchApp = yesNo(health.twitch_app_configured);
+        const twitchUser = yesNo(health.twitch_user_configured);
+        const daUser = yesNo(health.donationalerts_user_configured);
+        setPill("twitch-app", twitchApp[0], twitchApp[1]);
+        setPill("twitch-user", twitchUser[0], twitchUser[1]);
+        setPill("da-user", daUser[0], daUser[1]);
+
+        byId("raw").textContent = JSON.stringify(raw, null, 2);
+      } catch (error) {
+        setPill("backend-state", "bad", "Не отвечает");
+        setPill("collector-state", "bad", "Неизвестно");
+        setPill("eventsub-state", "bad", "Неизвестно");
+        byId("active-session").textContent = "Неизвестно";
+        byId("raw").textContent = String(error);
+      } finally {
+        byId("updated").textContent = `Обновлено: ${new Date().toLocaleTimeString()}`;
+      }
+    }
+
+    refresh();
+    window.setInterval(refresh, 5000);
+  </script>
+</body>
+</html>

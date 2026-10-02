@@ -1,0 +1,202 @@
+{
+  "session_title": "Люди этого эфира",
+  "audio": {
+    "url": "assets/ending-track.mp3",
+    "volume": 0.62,
+    "mix_gain": 0.55
+  },
+  "final_message": "Спасибо вам\nза этот невероятный стрим!",
+  "show": {
+    "intro_seconds": 6,
+    "outro_seconds": 12,
+    "outro_early_seconds": 5,
+    "music_fade_out_seconds": 2,
+    "final_message_lead_seconds": 14,
+    "final_message_prep_seconds": 2.5,
+    "main_padding_seconds": 1,
+    "stats_change_transition_ms": 650,
+    "clip_crossfade_ms": 500,
+    "clip_video_volume": 1,
+    "duck_music_during_video_clips": true,
+    "music_duck_level": 0.12,
+    "auto_stop_stream": true,
+    "stop_stream_at": "after_final_message",
+    "stop_stream_lead_seconds": 0.5,
+    "stop_stream_delay_seconds": 10
+  },
+  "stats": {
+    "total_seen_label": "Свой след сегодня оставили",
+    "total_seen_users": 120
+  },
+  "top_chatters": [
+    { "name": "StreamFan_Max", "messages": 245 },
+    { "name": "Kira_Watcher", "messages": 198 },
+    { "name": "NightOwl88", "messages": 1 }
+  ],
+  "first_time_chatters": [
+    { "name": "NewcomerAlex" },
+    { "name": "firsthello" },
+    { "name": "LimeFox" },
+    { "name": "quiet_entry" },
+    { "name": "Alpha_User" },
+    { "name": "Beta_Tester" },
+    { "name": "Gamma_Ray" },
+    { "name": "Delta_Force" },
+    { "name": "Epsilon_Star" },
+    { "name": "Zeta_Prime" },
+    { "name": "Eta_Beta" },
+    { "name": "Theta_Wave" },
+    { "name": "Iota_Small" },
+    { "name": "Kappa_King" },
+    { "name": "Lambda_Lambda" },
+    { "name": "Mu_Music" },
+    { "name": "Nu_Gen" },
+    { "name": "Xi_Xi_Xi" },
+    { "name": "Omicron_Rule" },
+    { "name": "Pi_Circle" }
+  ],
+  "follows": [
+    { "name": "FollowedToday" },
+    { "name": "KeenWatcher" },
+    { "name": "StayForMore" },
+    { "name": "HappyViewer" },
+    { "name": "LoveTheStream" },
+    { "name": "NiceVibe_User" },
+    { "name": "NewFriend_1" },
+    { "name": "NewFriend_2" },
+    { "name": "NewFriend_3" },
+    { "name": "NewFriend_4" },
+    { "name": "NewFriend_5" },
+    { "name": "NewFriend_6" },
+    { "name": "NewFriend_7" },
+    { "name": "NewFriend_8" },
+    { "name": "NewFriend_9" }
+  ],
+  "top_streaks": [
+    { "name": "StreamFan_Max", "streak": 21 },
+    { "name": "LoyalViewer", "streak": 2 },
+    { "name": "DailyWatcher", "streak": 1 }
+  ],
+  "subscription_events": [
+    { "name": "SubHero", "detail": "Tier 1" },
+    { "name": "MonthSeven", "detail": "7 мес. подряд · Tier 1" },
+    { "name": "GiftCaptain", "detail": "5 подарков · Tier 1" }
+  ],
+  "bits_leaders": [
+    { "name": "CheerPilot", "bits": 1200 },
+    { "name": "SparkDrop", "bits": 650 },
+    { "name": "NightOwl88", "bits": 300 }
+  ],
+  "raids": [
+    { "name": "RaidStreamer", "detail": "42 зрителей" },
+    { "name": "LateCrew", "detail": "17 зрителей" }
+  ],
+  "reward_redemptions": [
+    { "name": "HydrateNow", "detail": "Тисканье (15), Гидрация (2), Сделать кувырок (1)" },
+    { "name": "ClipPlease", "detail": "Выделенное сообщение (4)" },
+    { "name": "SoundSpam", "detail": "Случайный sound alert (12), Эффект чата (1)" },
+    { "name": "PetTheStreamer", "detail": "Тисканье (42), Мурчать (5)" },
+    { "name": "SuperActiveUser", "detail": "Прыжок (10), Приседание (10), Мах рукой (10), Улыбка (1)" },
+    { "name": "Hidden_Boss", "detail": "Секретное действие (1)" },
+    { "name": "AnotherOne", "detail": "Тисканье (2)" },
+    { "name": "TestScroll_1", "detail": "Действие (1)" },
+    { "name": "TestScroll_2", "detail": "Действие (1)" },
+    { "name": "TestScroll_3", "detail": "Действие (1)" }
+  ],
+  "donors": [
+    {
+      "name": "GenerousSoul",
+      "amount": 1500,
+      "formatted_amount": "1 500 ₽",
+      "contribution_label": "2 доната",
+      "message": "Спасибо за атмосферу и людей в чате"
+    },
+    {
+      "name": "StreamSupport",
+      "amount": 750,
+      "formatted_amount": "750 ₽",
+      "contribution_label": "1 донат",
+      "message": "Хочу тоже оставить свой след"
+    },
+    {
+      "name": "AnonymousDon",
+      "amount": 500,
+      "formatted_amount": "500 ₽",
+      "contribution_label": "1 донат",
+      "message": "До следующего эфира"
+    },
+    {
+      "name": "BigFan2024",
+      "amount": 300,
+      "formatted_amount": "300 ₽",
+      "contribution_label": "1 донат",
+      "message": ""
+    },
+    { "name": "Rich_Lurker", "amount": 10000, "formatted_amount": "10 000 ₽", "contribution_label": "1 донат", "message": "Просто так" },
+    { "name": "Active_Donator", "amount": 4500, "formatted_amount": "4 500 ₽", "contribution_label": "5 донатов", "message": "Ещё один!" },
+    { "name": "Test_Scroll_Donor_1", "amount": 100, "formatted_amount": "100 ₽", "contribution_label": "1 донат", "message": "Скролл тест" },
+    { "name": "Test_Scroll_Donor_2", "amount": 100, "formatted_amount": "100 ₽", "contribution_label": "1 донат", "message": "Скролл тест" },
+    { "name": "Test_Scroll_Donor_3", "amount": 100, "formatted_amount": "100 ₽", "contribution_label": "1 донат", "message": "Скролл тест" },
+    { "name": "Test_Scroll_Donor_4", "amount": 100, "formatted_amount": "100 ₽", "contribution_label": "1 донат", "message": "Скролл тест" },
+    { "name": "Test_Scroll_Donor_5", "amount": 100, "formatted_amount": "100 ₽", "contribution_label": "1 донат", "message": "Скролл тест" },
+    { "name": "Test_Scroll_Donor_6", "amount": 100, "formatted_amount": "100 ₽", "contribution_label": "1 донат", "message": "Скролл тест" },
+    { "name": "Test_Scroll_Donor_7", "amount": 100, "formatted_amount": "100 ₽", "contribution_label": "1 донат", "message": "Скролл тест" }
+  ],
+  "credits": [
+    "StreamFan_Max",
+    "Kira_Watcher",
+    "NightOwl88",
+    "LoyalViewer",
+    "DailyWatcher",
+    "GenerousSoul",
+    "AnonymousDon",
+    "BigFan2024",
+    "StreamSupport",
+    "QuietViewer",
+    "LateNightGuy",
+    "CasualPasser",
+    "ReturnVisitor",
+    "NewcomerAlex",
+    "RegularMike",
+    "TopChatter99",
+    "SilentLurker",
+    "FriendlyFace",
+    "WeekendWatcher",
+    "MorningViewer"
+  ],
+  "clips": [
+    {
+      "type": "video",
+      "url": "assets/clips/local-fallback-01.mp4",
+      "title": "Локальный резерв 01",
+      "preferred_duration_sec": 12,
+      "duration_sec": 12,
+      "source": "local-fallback"
+    },
+    {
+      "type": "video",
+      "url": "assets/clips/local-fallback-02.mp4",
+      "title": "Локальный резерв 02",
+      "preferred_duration_sec": 12,
+      "duration_sec": 12,
+      "source": "local-fallback"
+    },
+    {
+      "type": "video",
+      "url": "assets/clips/local-fallback-03.mp4",
+      "title": "Локальный резерв 03",
+      "preferred_duration_sec": 12,
+      "duration_sec": 12,
+      "source": "local-fallback"
+    }
+  ],
+  "theme": {
+    "bg_color": "#0f0e0b",
+    "panel_color": "rgba(28,22,18,0.92)",
+    "accent_color": "#c6a876",
+    "text_color": "#f5efe6",
+    "muted_text_color": "rgba(245,239,230,0.62)",
+    "success_color": "#dcc9a4",
+    "danger_color": "#b8957a"
+  }
+}

@@ -1,0 +1,6 @@
+fastapi<1
+uvicorn<1
+obsws-python<2
+websocket-client<2
+# yt-dlp без верхней границы: Twitch периодически меняет формат, и старые версии перестают качать клипы
+yt-dlp
